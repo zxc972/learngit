@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey Brain Distance Analysis Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .content {
+            padding: 40px;
+        }
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .summary-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        .summary-card h3 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        .summary-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        .subject-card {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .subject-header {
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .subject-content {
+            padding: 20px;
+        }
+        .heatmap-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .heatmap-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .stats-table th,
+        .stats-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .stats-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        .timestamp {
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Monkey Brain Distance Analysis Report</h1>
+            <p>{{ANALYSIS_TITLE}}</p>
+        </div>
+        
+        <div class="content">
+            <!-- Summary Section -->
+            <div class="section">
+                <h2>📊 Analysis Summary</h2>
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h3>Total Subjects</h3>
+                        <div class="value">{{TOTAL_SUBJECTS}}</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Successful Analysis</h3>
+                        <div class="value">{{SUCCESSFUL_SUBJECTS}}</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Success Rate</h3>
+                        <div class="value">{{SUCCESS_RATE}}%</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Processing Time</h3>
+                        <div class="value">{{PROCESSING_TIME}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parameters Section -->
+            <div class="section">
+                <h2>⚙️ Analysis Parameters</h2>
+                <table class="stats-table">
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>Work Directory</td><td>{{WORK_DIRECTORY}}</td></tr>
+                    <tr><td>Parcellation File</td><td>{{PARCELLATION_FILE}}</td></tr>
+                    <tr><td>Surface Type</td><td>{{SURFACE_TYPE}}</td></tr>
+                    <tr><td>Hemisphere</td><td>{{HEMISPHERE}}</td></tr>
+                    <tr><td>Max Parallel</td><td>{{MAX_PARALLEL}}</td></tr>
+                </table>
+            </div>
+
+            <!-- Subject Results Section -->
+            <div class="section">
+                <h2>🔍 Individual Subject Results</h2>
+                <div class="subject-grid">
+                    {{SUBJECT_RESULTS}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="timestamp">Report generated on {{TIMESTAMP}}</p>
+            <p>Monkey Brain Segmentation Pipeline v1.0.0</p>
+        </div>
+    </div>
+</body>
+</html>
